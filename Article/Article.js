@@ -85,6 +85,19 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title:"There and Back Again",
+    date:"September 21st, 1937",
+    firstParagraph:"In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, " +
+        "nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.",
+    secondParagraph:"It had a perfectly round door like a porthole, painted green, with a shiny yellow brass knob in the exact middle. The door " +
+        "opened on to a tube-shaped hall like a tunnel: a very comfortable tunnel without smoke, with panelled walls, and floors tiled and carpeted, " +
+        "provided with polished chairs, and lots and lots of pegs for hats and coats — the hobbit was fond of visitors.",
+    thirdParagraph:"The tunnel wound on and on, going fairly but not quite straight into the side of the hill—The Hill, as all the people for many miles " +
+        "round called it—and many little round doors opened out of it, first on one side and then on another. No going upstairs for the hobbit: bedrooms, " +
+        "bathrooms, cellars, pantries (lots of these), wardrobes (he had whole rooms devoted to clothes), kitchens, dining-rooms, all were on the same floor, " +
+        "and indeed on the same passage.",
   }
 ];
 
@@ -112,3 +125,46 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createComp(data) {
+  const article = document.createElement("div");
+  const title = document.createElement("h2");
+  const date = document.createElement("p");
+  const first = document.createElement("p");
+  const sec = document.createElement("p");
+  const third = document.createElement("p");
+  const btn = document.createElement("button");
+
+  article.classList.add("article");
+  title.classList.add("title");
+  date.classList.add("date");
+  first.classList.add("first-p");
+  sec.classList.add("sec-p");
+  third.classList.add("third-p");
+  btn.classList.add("expandButton");
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(first);
+  article.appendChild(sec);
+  article.appendChild(third);
+  article.appendChild(btn);
+
+  title.textContent = data.title;
+  date.textContent = data.date;
+  first.textContent = data.firstParagraph;
+  sec.textContent = data.secondParagraph;
+  third.textContent = data.thirdParagraph;
+
+  btn.addEventListener("click" , event => {
+    article.classList.toggle("article-open")
+  } );
+
+  return article;
+}
+
+const articles = document.querySelector(".articles");
+
+data.forEach(data => {
+  articles.appendChild(createComp(data))
+});
